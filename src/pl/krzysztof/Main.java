@@ -14,13 +14,35 @@ public class Main {
 
         Scanner userInput = new Scanner(System.in);
 
+//        Location location = new Location("gdansk");
+//        String gdansk = location.getLocationName();
+//
+//        System.out.println(gdansk);
+
+        System.out.println("podaj miejscowość do sprawdzenia pogody");
+        Location loc = new Location(userInput.nextLine());
+
+        if (loc.ifLocationExist()){
+            Weatherv2 weatherTest = new Weatherv2();
+            System.out.println(weatherTest.getLastUpdate());
+            System.out.println(weatherTest.getCityName());
+            System.out.println(weatherTest.getTemperature());
+            System.out.println(weatherTest.getPressure());
+            System.out.println(weatherTest.getConditionText());
+            System.out.println(weatherTest.getAlert());
+        } else {
+            System.out.println("błedna lokalizacja");
+        }
+
+
+
+
         try (FileWriter myWriter = new FileWriter("weatherFile.txt"))
         {
          myWriter.write("");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
         boolean flag = false;
