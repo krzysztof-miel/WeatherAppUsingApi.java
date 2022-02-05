@@ -1,7 +1,7 @@
 package pl.krzysztof;
 
 public class Location {
-    public final String locationName;
+    private final String locationName;
 
     public Location(String locationName) {
         this.locationName = locationName;

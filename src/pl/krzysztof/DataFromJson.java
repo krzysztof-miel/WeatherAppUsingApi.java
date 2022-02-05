@@ -22,6 +22,18 @@ public class DataFromJson {
         return new JSONObject(output);
     }
 
+    public static JSONArray crateSearchArrayJsonObj(String city){
+        String searchOutput = GetUrlContent.getContents(UrlCreator.searchCityUrl(city));
+        if (searchOutput == null){
+            System.out.println("błąd w trakcie pobirania danych");
+            return null;
+        }
+        return  new JSONArray(searchOutput);
+        // trzeba stworzyć metodę to pobierania listy propozycji miast
+        // następnie w clasie Search trzeba wybrać miasto i przekierować je dalej, żeby uzyskać objekt Weater
+
+    }
+
     public static String getLocationName(JSONObject locationNameJsonObj) {
         return locationNameJsonObj.getJSONObject("location").getString("name");
     }

@@ -8,34 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CurrentCityWeather weather = new CurrentCityWeather();
         SearchCities cities = new SearchCities();
         ReadCityFromFile cityFromFile = new ReadCityFromFile();
 
         Scanner userInput = new Scanner(System.in);
-
-//        Location location = new Location("gdansk");
-//        String gdansk = location.getLocationName();
-//
-//        System.out.println(gdansk);
-
-        System.out.println("podaj miejscowość do sprawdzenia pogody");
-        Location loc = new Location(userInput.nextLine());
-
-        if (loc.ifLocationExist()){
-            Weatherv2 weatherTest = new Weatherv2();
-            System.out.println(weatherTest.getLastUpdate());
-            System.out.println(weatherTest.getCityName());
-            System.out.println(weatherTest.getTemperature());
-            System.out.println(weatherTest.getPressure());
-            System.out.println(weatherTest.getConditionText());
-            System.out.println(weatherTest.getAlert());
-        } else {
-            System.out.println("błedna lokalizacja");
-        }
-
-
-
 
         try (FileWriter myWriter = new FileWriter("weatherFile.txt"))
         {
@@ -57,15 +33,25 @@ public class Main {
 
             switch (chosenOption.trim()){
                 case "1":
-                    System.out.print("podaj miasto -> ");
-                    String currentCity = userInput.nextLine();
-                    weather.getLocationWeather(currentCity);
+                    Weather weather1 = WeatherForLocation.getWeatherForLocation();
+                    if (weather1 != null){
+                        System.out.println(weather1.toString());
+                    }
+//                    System.out.print("podaj miasto -> ");
+//                    String currentCity = userInput.nextLine();
+//                    weather.getLocationWeather(currentCity);
                     break;
                 case "2":
-                    System.out.print("podaj lokalizację ktorej nie jesteś pewien -> ");
-                    String searchLocation = userInput.nextLine();
-                    cities.getCityName(searchLocation);
+                    Weather weather2 = PotentialLocation.getWeatherForLocationFromList();
+                    if (weather2 != null){
+                        System.out.println(weather2.toString());
+                    }
                     break;
+
+//                    System.out.print("podaj lokalizację ktorej nie jesteś pewien -> ");
+//                    String searchLocation = userInput.nextLine();
+//                    cities.getCityName(searchLocation);
+
                 case "3":
                     System.out.println("Wyszukaj więcej miast za jednym razem \nIle miast chciałbyś sprawdzić?");
                     String cityAmount = userInput.nextLine();

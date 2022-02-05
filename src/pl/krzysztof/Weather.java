@@ -2,11 +2,8 @@ package pl.krzysztof;
 
 import org.json.JSONObject;
 
-import java.util.Scanner;
+public class Weather {
 
-public class Weatherv2 {
-
-    public Location loc;
     public String cityName;
     private String lastUpdate;
     private String conditionText;
@@ -15,7 +12,7 @@ public class Weatherv2 {
     private double temperature;
     private double pressure;
 
-    public Weatherv2() {
+    public Weather(JSONObject weatherObj, JSONObject alertObj) {
         if (weatherObj != null && alertObj != null){
             this.cityName = DataFromJson.getLocationName(weatherObj);
             this.lastUpdate = DataFromJson.getLastUpdate(weatherObj);
@@ -28,16 +25,7 @@ public class Weatherv2 {
 
 
 
-    Scanner scan = new Scanner(System.in);
 
-    String locationName = scan.nextLine();
-
-    Location location = new Location(locationName);
-    String city = location.getLocationName();
-
-
-    JSONObject weatherObj = DataFromJson.createWeatherJsonObj(city);
-    JSONObject alertObj = DataFromJson.createAlertJsonObj(city);
 
 
     public String getLastUpdate() {
@@ -64,6 +52,17 @@ public class Weatherv2 {
         return this.cityName;
     }
 
+    @Override
+    public String toString() {
+
+        return lastUpdate + "\n" +
+                cityName + "\n" +
+                "temperatura: " + temperature +"\n" +
+                "ciśnienie: " + pressure + "\n" +
+                conditionText + "\n" +
+                "Alert: " + alert + "\n";
+
+    }
 }
 
 
