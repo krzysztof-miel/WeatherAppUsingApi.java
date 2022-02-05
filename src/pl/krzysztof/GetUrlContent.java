@@ -33,7 +33,7 @@ public class GetUrlContent {
             // reading from the urlconnection using the bufferedreader
             while ((line = bufferedReader.readLine()) != null)
             {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
         }

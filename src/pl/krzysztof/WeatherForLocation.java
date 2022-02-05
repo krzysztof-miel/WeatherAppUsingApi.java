@@ -1,7 +1,5 @@
 package pl.krzysztof;
 
-import org.json.JSONObject;
-
 import java.util.Scanner;
 
 public class WeatherForLocation {
@@ -14,7 +12,7 @@ public class WeatherForLocation {
         if (location.ifLocationExist()) {
             return location;
         } else {
-            System.out.println("błądna lokalizacja");
+            System.out.println("Błędna lokalizacja");
             return null;
         }
 
@@ -25,23 +23,10 @@ public class WeatherForLocation {
         if (location.ifLocationExist()) {
             return location;
         } else {
-            System.out.println("błądna lokalizacja");
+            System.out.println("Błędna lokalizacja");
             return null;
         }
     }
-
-//    private static JSONObject createWeatherJsonObj(Location loc) {
-//        String locNameToJson = loc.getLocationName();
-//        return DataFromJson.createWeatherJsonObj(locNameToJson);
-//
-//
-//    }
-//
-//    private static JSONObject createAlertJsonObj(Location loc) {
-//        String locNameToJson = loc.getLocationName();
-//        return DataFromJson.createAlertJsonObj(locNameToJson);
-//
-//    }
 
     public static Weather getWeatherForLocation() {
         Location loc = WeatherForLocation.crateLocation();
@@ -57,7 +42,6 @@ public class WeatherForLocation {
     public static Weather getWeatherForLocation(String locName){
         Location loc = WeatherForLocation.createLocation(locName);
         if (loc != null) {
-            String locationName = loc.getLocationName();
             Weather weather = new Weather(DataFromJson.createWeatherJsonObj(locName), DataFromJson.createAlertJsonObj(locName));
             ToFile.writeWeather(weather);
             return weather;

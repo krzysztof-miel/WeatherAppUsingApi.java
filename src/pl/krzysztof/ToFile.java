@@ -13,7 +13,7 @@ public class ToFile {
             myWriter.write(fullWeather);
             System.out.println("Zapisano poparwnie do pliku \n");
         } catch (IOException e) {
-            System.out.println("błąd w trakci zapisywania\n");
+            System.out.println("Błąd w trakci zapisywania\n");
         }
     }
 
