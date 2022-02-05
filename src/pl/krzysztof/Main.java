@@ -8,9 +8,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SearchCities cities = new SearchCities();
-        ReadCityFromFile cityFromFile = new ReadCityFromFile();
-
         Scanner userInput = new Scanner(System.in);
 
         try (FileWriter myWriter = new FileWriter("weatherFile.txt"))
@@ -32,33 +29,23 @@ public class Main {
             String chosenOption = userInput.nextLine();
 
             switch (chosenOption.trim()){
-                case "1":
+                case "1": // wyszukiwanie ogody dla konkretnego miasta
                     Weather weather1 = WeatherForLocation.getWeatherForLocation();
                     if (weather1 != null){
-                        System.out.println(weather1.toString());
+                        System.out.println(weather1);
                     }
-//                    System.out.print("podaj miasto -> ");
-//                    String currentCity = userInput.nextLine();
-//                    weather.getLocationWeather(currentCity);
                     break;
-                case "2":
+                case "2": // wszykiwanie likalizacji, której nie jestesmy pewni
                     Weather weather2 = PotentialLocation.getWeatherForLocationFromList();
                     if (weather2 != null){
-                        System.out.println(weather2.toString());
+                        System.out.println(weather2);
                     }
                     break;
-
-//                    System.out.print("podaj lokalizację ktorej nie jesteś pewien -> ");
-//                    String searchLocation = userInput.nextLine();
-//                    cities.getCityName(searchLocation);
-
-                case "3":
-                    System.out.println("Wyszukaj więcej miast za jednym razem \nIle miast chciałbyś sprawdzić?");
-                    String cityAmount = userInput.nextLine();
-                    cityFromFile.writeToFile(cityAmount);
+                case "3": // wyszukiwanie kilku lokalozacji jednocześnie
+                    CitiesFromFile.readWeatherForCitiesFromFile();
                     break;
                 case "4":
-                    System.out.println("żegnaj przyjacielu");
+                    System.out.println("koniec");
                     flag = true;
                     break;
                 default:

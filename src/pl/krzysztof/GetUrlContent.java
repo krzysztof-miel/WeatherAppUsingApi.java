@@ -22,7 +22,7 @@ public class GetUrlContent {
 
             int urlCode = urlConnection.getResponseCode();
             if (urlCode !=200){
-                System.out.println("GetUrlContent class -> error \nPodane miasto nie istnieje ");
+                System.out.println("GetUrlContent class -> error");
                 return null;
 
             }
